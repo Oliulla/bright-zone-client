@@ -5,8 +5,22 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        console.log('user Logged out');
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
   return (
     <header className="header p-2 px-lg-5 py-lg-3">
       <Navbar collapseOnSelect expand="lg" variant="dark">
@@ -29,8 +43,15 @@ const Header = () => {
               <Link to="/faq">FAQ</Link>
             </Nav>
             <Nav>
-              <Link to='/login'>Login</Link>
-              <Link to='/register'>Register</Link>
+              {
+                  user?.uid ?
+                  <button onClick={handleLogOut}>Log Out</button>
+                  :
+                  <>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/register'>Register</Link>
+                  </>
+              }
                 
                 {/* user profile here */}
               <img src="" alt="userProfile" title="Rock" />
