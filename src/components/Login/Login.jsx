@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Login = () => {
-    const {logIn} = useContext(AuthContext);
+    const { logIn, logInWithGoogle} = useContext(AuthContext);
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -25,6 +25,16 @@ const Login = () => {
             })
     }
 
+    // login with google
+    const handleGoogleLogin = () => {
+        logInWithGoogle()
+            .then(result => {
+                console.log(result.user)
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
 
   return (
@@ -47,7 +57,7 @@ const Login = () => {
           </Button>
         </Form>
         <div className="my-4">
-          <button className="mx-4 border-0 px-2 py-2 mt-3 bg-primary text-white rounded">
+          <button onClick={handleGoogleLogin} className="mx-4 border-0 px-2 py-2 mt-3 bg-primary text-white rounded">
             Login With Google
           </button>
           <button className="mx-4 border-0 px-2 py-2 mt-3 bg-primary text-white rounded">
