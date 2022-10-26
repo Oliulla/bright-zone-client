@@ -1,12 +1,13 @@
-import './App.css';
-import Header from './components/Header/Header';
+import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import routes from './Routes/Routes/Routes';
 
-function App() {
-  return (
-    <div>
-      <Header />
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <>
+            <RouterProvider router={routes} />
+        </>
+    );
+};
 
 export default App;
