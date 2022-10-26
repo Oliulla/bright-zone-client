@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Login = () => {
@@ -74,6 +75,9 @@ const Login = () => {
           <button onClick={handleGithubLogin} className="mx-4 border-0 px-2 py-2 mt-3 bg-primary text-white rounded">
             Login With Github
           </button>
+        </div>
+        <div>
+            <small>New in Bright Zone? </small><Link to="/register">Please Register</Link>
         </div>
       </div>
     </div>
