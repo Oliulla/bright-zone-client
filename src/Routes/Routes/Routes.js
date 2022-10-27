@@ -16,7 +16,6 @@ const routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                // loader: () => fetch("http://localhost:5000"),
                 element: <Courses />
             },
             {
@@ -41,7 +40,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/course/:id',
-                loader: ({params}) => fetch(`http://localhost:5000/course/${params.id}`),
+                loader: ({params}) => fetch(`https://bright-zone-server.vercel.app/course/${params.id}`),
                 element: <CourseDetails />
             }
         ]

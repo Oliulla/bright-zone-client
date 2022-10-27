@@ -1,31 +1,31 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 
 const SingleCard = ({ course }) => {
-    const { courseImage, courseName, description, id } = course;
+  const { courseImage, courseName, description, id } = course;
 
-    console.log(course)
+  console.log(course);
 
   return (
-        <Row xs={1} md={2} className="card-row" style={{width: '50rem'}}>
-      <Col>
+      <Col className="mb-3">
         <Card>
           <Card.Img variant="top" src={courseImage} />
           <Card.Body>
             <Card.Title>{courseName}</Card.Title>
             <Card.Text>
-              {
-                description.length > 50 ? `${description.slice(0, 50)}...` : description
-              }
+              {description.length > 50
+                ? `${description.slice(0, 45)}...`
+                : description}
             </Card.Text>
           </Card.Body>
-          <Link to={`/course/${id}`}>Read more</Link>
+          <Link to={`/course/${id}`} className="mx-3">
+            Read more
+          </Link>
         </Card>
       </Col>
-    </Row>
+
   );
 };
 

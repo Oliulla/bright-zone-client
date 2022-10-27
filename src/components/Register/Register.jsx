@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -23,12 +23,23 @@ const Register = () => {
         // create user with email and password
         createUser(email, password)
             .then(result => {
+              handleUserUpdateProfile(fullName, photoUrl)
                 const user = result.user;
                 console.log(user);
             })
             .catch(error => {
                 console.log(error)
             })
+    }
+
+    const handleUserUpdateProfile = (fullName, photoUrl) => {
+      updateUserProfile(fullName, photoUrl)
+        .then(() => {
+          console.log("User profile updated")
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
 
   return (

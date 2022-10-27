@@ -9,7 +9,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Header = () => {
+  
   const { user, logOut } = useContext(AuthContext);
+  console.log(user?.displayName, user?.photoURL)
 
   const handleLogOut = () => {
     logOut()
@@ -25,7 +27,7 @@ const Header = () => {
     <header className="header p-2 px-lg-5 py-lg-3">
       <Navbar collapseOnSelect expand="lg" variant="dark">
         <Container>
-        <Link to="/">
+        <Link to="/" className="text-decoration-none">
             <img
               alt=""
               src={brandImg}
@@ -33,29 +35,37 @@ const Header = () => {
               height="35"
               className="d-inline-block align-top"
             />
-            <span>Bright Zone</span>
+            <span className="text-white ms-2 me-5 fs-4">Bright Zone</span>
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link to="/courses" className="my-1 mt-lg-0">Courses</Link>
-              <Link to="/blogs" className="my-1 mt-lg-0">Blogs</Link>
-              <Link to="/faq" className="my-1 mt-lg-0">FAQ</Link>
+              <Link to="/courses" className="my-1 my-lg-0 text-white mx-3 text-decoration-none">Courses</Link>
+              <Link to="/blogs" className="my-1 my-lg-0 text-white mx-3 text-decoration-none">Blogs</Link>
+              <Link to="/faq" className="my-1 my-lg-0 text-white mx-3 text-decoration-none">FAQ</Link>
             </Nav>
             <Nav>
               {
                   user?.uid ?
-                  <button onClick={handleLogOut}>Log Out</button>
+                  <>
+                    <img src={user?.photoURL} width="30" height="30" className="rounded-circle" alt="userProfile" title={user?.displayName} />
+                    <button onClick={handleLogOut} className="mx-3">Log Out</button>
+                  </>
                   :
                   <>
-                    <Link to='/login'>Login</Link>
-                    <Link to='/register'>Register</Link>
+                    <Link to='/login' className="text-decoration-none mx-3 text-white">Login</Link>
+                    <Link to='/register' className="text-decoration-none mx-3 text-white">Register</Link>
                   </>
               }
                 
                 {/* user profile here */}
-              <img src="" alt="userProfile" title="Rock" />
-              <button>Dark</button>
+              {/* {
+                user?.uid ?
+                <img src={user?.photoURL} width="30" height="30" className="rounded-circle" alt="userProfile" title={user?.displayName} />
+                :
+                ""
+              } */}
+              {/* <button onClick={toggleTheme}>Dark</button> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
