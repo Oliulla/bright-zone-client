@@ -48,8 +48,8 @@ const Header = () => {
               {
                   user?.uid ?
                   <>
-                    <img src={user?.photoURL} width="30" height="30" className="rounded-circle" alt="userProfile" title={user?.displayName} />
-                    <button onClick={handleLogOut} className="mx-3">Log Out</button>
+                    <img src={user?.photoURL} width="35" height="35" className="rounded-circle" alt="userProfile" title={user?.displayName} />
+                    <button onClick={handleLogOut} className="mx-3 btn btn-outline-primary">Log Out</button>
                   </>
                   :
                   <>

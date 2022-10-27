@@ -15,10 +15,10 @@ const Courses = () => {
       .then((data) => setCourses(data));
   }, []);
 
-  console.log(courses);
+  // console.log(courses);
 
   //   const courses = useLoaderData();
-  console.log(courses);
+  // console.log(courses);
 
   return (
     <Container>
@@ -34,7 +34,7 @@ const Courses = () => {
             </Link>
           ))}
         </Col>
-        <Col sm={9} className="border">
+        <Col sm={9} className="border px-3">
           <Row xs={1} md={2}>
           {courses.map((course) => (
             <SingleCard key={course.id} course={course} />

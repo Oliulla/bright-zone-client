@@ -1,12 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const Login = () => {
     const { logIn, logInWithGoogle, githubLogin} = useContext(AuthContext);
+    const [error, setError] = useState("");
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -18,11 +23,14 @@ const Login = () => {
 
         logIn(email, password)
             .then((result) => {
+              navigate(from, { replace: true });
                 const user = result.user;
                 console.log(user)
+                setError("")
             })
             .catch(error => {
                 console.log(error);
+                setError(error)
             })
     }
 
@@ -63,7 +71,9 @@ const Login = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control name="password" type="password" placeholder="Password" />
           </Form.Group>
-
+          {
+            error ? <p className="text-danger my-3"><small>{error.message}</small></p> : ""
+          }
           <Button variant="primary" type="submit" className="w-100">
             Login
           </Button>

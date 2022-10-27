@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -10,7 +10,7 @@ const CourseDetails = () => {
   const { courseName, courseImage, description, id } = course;
 
   return (
-    <Row xs={1} md={2} className="card-row d-flex justify-content-center my-4">
+    <Row xs={1} md={2} className="card-row d-flex justify-content-center my-4 px-3">
       <Col>
         <Card>
           <Card.Img variant="top" src={courseImage} />
@@ -18,8 +18,8 @@ const CourseDetails = () => {
             <Card.Title>{courseName}</Card.Title>
             <Card.Text>{description}</Card.Text>
           </Card.Body>
+          <Link to='/checkout' className="btn btn-primary border-0">Get premium access</Link>
         </Card>
-      <button>Get premium access</button>
       </Col>
     </Row>
   );

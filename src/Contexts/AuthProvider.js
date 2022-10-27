@@ -18,41 +18,44 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-    const googleProvider = new GoogleAuthProvider();
-    const githubProvider = new GithubAuthProvider();
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // create user with email and password
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-
   // update user profile
   const updateUserProfile = (name, photoURL) => {
-    console.log(name, photoURL);
+    // console.log(name, photoURL);
+    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photoURL
-    })
-  }
+      photoURL: photoURL,
+    });
+  };
 
   // user login with email and password
   const logIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   // login with google
   const logInWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // login with github
   const githubLogin = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubProvider);
   };
-
 
   // logout user
   const logOut = () => {
@@ -62,8 +65,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // if(currentUser) {
-      // }
+      setLoading(false);
     });
 
     return () => {
@@ -71,7 +73,16 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = { user, createUser, logOut, logIn, logInWithGoogle, githubLogin, updateUserProfile };
+  const authInfo = {
+    user,
+    createUser,
+    logOut,
+    logIn,
+    logInWithGoogle,
+    githubLogin,
+    updateUserProfile,
+    loading
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
