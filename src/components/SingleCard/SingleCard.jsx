@@ -21,7 +21,7 @@ const SingleCard = ({ course }) => {
             </Card.Text>
           </Card.Body>
           <Link to={`/course/${id}`} className="mx-3">
-            Read more
+            See Details
           </Link>
         </Card>
       </Col>
