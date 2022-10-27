@@ -12,13 +12,13 @@ const CourseDetails = () => {
   return (
     <Row xs={1} md={2} className="card-row d-flex justify-content-center my-4 px-3">
       <Col>
-        <Card>
+        <Card className="bg-info text-dark">
           <Card.Img variant="top" src={courseImage} />
           <Card.Body>
             <Card.Title>{courseName}</Card.Title>
             <Card.Text>{description}</Card.Text>
           </Card.Body>
-          <Link to='/checkout' className="btn btn-primary border-0">Get premium access</Link>
+          <Link to={`/checkout/${id}`} className="btn btn-primary border-0">Get premium access</Link>
         </Card>
       </Col>
     </Row>

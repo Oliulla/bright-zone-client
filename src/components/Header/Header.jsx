@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import brandImg from "../../assets/img/brand-img.jpg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -7,12 +7,17 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import ReactSwitch from "react-switch";
+import { ThemeContext } from "../../App";
 
 const Header = () => {
   
   const { user, logOut } = useContext(AuthContext);
-  console.log(user?.displayName, user?.photoURL)
 
+  // theme context 
+  const {theme, toggleTheme} = useContext(ThemeContext);
+
+  // user log out
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -53,19 +58,13 @@ const Header = () => {
                   </>
                   :
                   <>
-                    <Link to='/login' className="text-decoration-none mx-3 text-white">Login</Link>
-                    <Link to='/register' className="text-decoration-none mx-3 text-white">Register</Link>
+                    <Link to='/login' className="text-decoration-none mx-3 my-2 my-lg-0 text-white">Login</Link>
+                    <Link to='/register' className="text-decoration-none mx-3 my-2 my-lg-0 text-white">Register</Link>
                   </>
               }
-                
-                {/* user profile here */}
-              {/* {
-                user?.uid ?
-                <img src={user?.photoURL} width="30" height="30" className="rounded-circle" alt="userProfile" title={user?.displayName} />
-                :
-                ""
-              } */}
-              {/* <button onClick={toggleTheme}>Dark</button> */}
+              <div className="mx-3 my-2 my-lg-0">
+                <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
+              </div>
             </Nav>
           </Navbar.Collapse>
         </Container>

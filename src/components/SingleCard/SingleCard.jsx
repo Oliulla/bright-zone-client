@@ -10,7 +10,7 @@ const SingleCard = ({ course }) => {
 
   return (
       <Col className="mb-3">
-        <Card>
+        <Card className="bg-primary">
           <Card.Img variant="top" src={courseImage} />
           <Card.Body>
             <Card.Title>{courseName}</Card.Title>
@@ -20,7 +20,7 @@ const SingleCard = ({ course }) => {
                 : description}
             </Card.Text>
           </Card.Body>
-          <Link to={`/course/${id}`} className="mx-3">
+          <Link to={`/course/${id}`} className="mx-3 fs-5 text-white">
             See Details
           </Link>
         </Card>

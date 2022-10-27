@@ -42,11 +42,12 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/course/:id',
-                loader: ({params}) => fetch(`https://bright-zone-server.vercel.app/course/${params.id}`),
+                loader: ({ params }) => fetch(`https://bright-zone-server.vercel.app/course/${params.id}`),
                 element: <CourseDetails />
             },
             {
-                path: '/checkout',
+                path: '/checkout/:id',
+                loader: ({ params }) => fetch(`https://bright-zone-server.vercel.app/course/${params.id}`),
                 element: <PrivateRoute><CheckOut /></PrivateRoute>
             }
         ]
