@@ -9,9 +9,10 @@ import { AuthContext } from "../../Contexts/AuthProvider";
 const Login = () => {
     const { logIn, logInWithGoogle, githubLogin} = useContext(AuthContext);
     const [error, setError] = useState("");
+
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location.state?.from?.pathname || '/'
+    const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -24,8 +25,9 @@ const Login = () => {
         logIn(email, password)
             .then((result) => {
               navigate(from, { replace: true });
-                const user = result.user;
-                console.log(user)
+                // const user = result.user;
+                // console.log(user)
+                form.reset();
                 setError("")
             })
             .catch(error => {
@@ -38,7 +40,8 @@ const Login = () => {
     const handleGoogleLogin = () => {
         logInWithGoogle()
             .then(result => {
-                console.log(result.user)
+              navigate(from, { replace: true });
+                // console.log(result.user)
             })
             .catch(error => {
                 console.log(error);
@@ -49,7 +52,8 @@ const Login = () => {
     const handleGithubLogin = () => {
         githubLogin()
         .then(result => {
-            console.log(result.user)
+          navigate(from, { replace: true });
+            // console.log(result.user)
         })
         .catch(error => {
             console.log(error);

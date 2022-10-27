@@ -18,18 +18,18 @@ const Courses = () => {
   return (
     <Container>
       <Row className="my-2 my-lg-5">
-        <Col sm={3} className="border bg-dark left-nav px-3">
+        <Col sm={3} className="bg-dark left-nav px-3">
           {courses.map((course) => (
             <Link
               to={`/course/${course.id}`}
               key={course.id}
-              className="d-flex flex-direction-row d-lg-block my-4 my-lg-3 mx-lg-0 text-primary text-decoration-none"
+              className="linkHover d-flex flex-direction-row d-lg-block my-4 my-lg-3 mx-lg-0 text-primary text-decoration-none"
             >
               {course.courseName}
             </Link>
           ))}
         </Col>
-        <Col sm={9} className="px-3">
+        <Col sm={9} className="px-3 mt-3 mt-lg-0">
           <Row xs={1} md={2}>
           {courses.map((course) => (
             <SingleCard key={course.id} course={course} />

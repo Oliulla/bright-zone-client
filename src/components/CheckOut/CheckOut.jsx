@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const CheckOut = () => {
   const checkOutCourse = useLoaderData();
-  console.log(checkOutCourse);
+  
   return (
     <div className="d-flex justify-content-center my-4">
       <div>
